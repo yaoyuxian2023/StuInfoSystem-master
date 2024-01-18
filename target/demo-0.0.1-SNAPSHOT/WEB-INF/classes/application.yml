@@ -1,0 +1,32 @@
+spring:
+  datasource:
+    username: root
+    password: 6825
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mysql-library?useSSL=false
+    type: com.alibaba.druid.pool.DruidDataSource
+    #   数据源其他配置
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+  thymeleaf:
+    cache: false
+    encoding: UTF-8
+  http:
+    encoding:
+      charset: UTF-8
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+
+
+server:
+  port: 8088
+  tomcat:
+    uri-encoding: utf-8
+
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true

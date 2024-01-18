@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)http://getbootstrap.com/docs/4.0/examples/dashboard/ -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>学生修改</title>
+    <!-- Bootstrap core CSS -->
+    <link href="asserts/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.css}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="asserts/css/dashboard.css" th:href="@{/asserts/css/dashboard.css}" rel="stylesheet">
+    <style type="text/css">
+        /* Chart.js */
+
+        @-webkit-keyframes chartjs-render-animation {
+            from {
+                opacity: 0.99
+            }
+            to {
+                opacity: 1
+            }
+        }
+
+        @keyframes chartjs-render-animation {
+            from {
+                opacity: 0.99
+            }
+            to {
+                opacity: 1
+            }
+        }
+
+        .chartjs-render-monitor {
+            -webkit-animation: chartjs-render-animation 0.001s;
+            animation: chartjs-render-animation 0.001s;
+        }
+    </style>
+</head>
+
+<body>
+<!--引入抽取的topbar-->
+<!--模板名：会使用thymeleaf的前后缀配置规则进行解析-->
+<div th:replace="commons/admbar::topbar"></div>
+
+<div class="container-fluid">
+    <div class="row">
+        <!--引入侧边栏-->
+        <div th:replace="commons/admbar::#sidebar(activeUri='stu')"></div>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <form th:action="@{/adm/stu}" method="post">
+
+                <div class="alert alert-danger" role="alert" th:if="${errors!=null}">
+                    <div th:text="${error.msg}" th:each="error:${errors}"></div>
+                </div>
+
+                <input type="hidden" name="_method" value="put" />
+
+                <div class="form-group">
+                    <label>学号</label>
+                    <input name="stuId" type="text" class="form-control" placeholder="请输入学号" th:value="${stu!=null}?${stu.stuId}">
+                </div>
+                <div class="form-group">
+                    <label>姓名</label>
+                    <input name="stuName" type="text" class="form-control" placeholder="请输入姓名" th:value="${stu!=null}?${stu.stuName}">
+                </div>
+
+                <div class="form-group">
+                    <label>密码</label>
+                    <input name="stuPass" type="text" class="form-control" placeholder="请输入密码" th:value="${stu!=null}?${stu.stuPass}">
+                </div>
+
+                <div class="form-group">
+                    <label>班级</label>
+                    <select class=" form-control" name="stuClass">
+                        <option  th:selected="${stu!=null}?${class.className eq stu.getStuClass()}"  th:each="class:${classes}" th:value="${class.className}" th:text="${class.className}">1</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>性别</label><br/>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="stuSex" value="1" th:checked="${stu!=null}?${stu.stuSex eq '1'}">
+                        <label class="form-check-label">男</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="stuSex" value="0" th:checked="${stu!=null}?${stu.stuSex eq '0'}">
+                        <label class="form-check-label">女</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>电话</label>
+                    <input name="stuTele" type="text" class="form-control" placeholder="请输入电话号码" th:value="${stu!=null}?${stu.stuTele}">
+                </div>
+                <button type="submit" class="btn btn-primary" >修改</button>
+            </form>
+        </main>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script type="text/javascript" src="asserts/js/jquery-3.2.1.slim.min.js" th:src="@{/webjars/jquery/3.3.1/jquery.js}"></script>
+<script type="text/javascript" src="asserts/js/popper.min.js" th:src="@{/webjars/popper.js/1.11.1/dist/popper.js}"></script>
+<script type="text/javascript" src="asserts/js/bootstrap.min.js" th:src="@{/webjars/bootstrap/4.0.0/js/bootstrap.js}"></script>
+
+<!-- Icons -->
+<script type="text/javascript" src="asserts/js/feather.min.js" th:src="@{/asserts/js/feather.min.js}"></script>
+<script>
+    feather.replace();
+</script>
+
+</body>
+
+</html>

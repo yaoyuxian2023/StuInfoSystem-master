@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>学生信息管理系统登录</title>
+	<!-- Bootstrap core CSS -->
+	<link href="asserts\css\bootstrap.min.css" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.css}" rel="stylesheet">
+	<!-- Custom styles for this template -->
+	<link href="asserts/css/signin.css" th:href="@{/asserts/css/signin.css}" rel="stylesheet">
+
+	<script type="text/javascript" src="asserts/js/jquery-3.2.1.slim.min.js" th:src="@{/webjars/jquery/3.3.1/jquery.js}"></script>
+	<script type="text/javascript" src="asserts/js/popper.min.js" th:src="@{/webjars/popper.js/1.11.1/dist/popper.js}"></script>
+	<script type="text/javascript" src="asserts/js/bootstrap.min.js" th:src="@{/webjars/bootstrap/4.0.0/js/bootstrap.js}"></script>
+
+	<!-- Icons -->
+	<script type="text/javascript" src="asserts/js/feather.min.js" th:src="@{/asserts/js/feather.min.js}"></script>
+
+	<script>
+		function send(i)
+		{
+
+			if (i===0)
+			{
+				$("#loginFrom").attr("action", $("#bt0").attr("uri")).submit();
+				return false;
+			}
+			else if(i===1)
+			{
+				$("#loginFrom").attr("action",$("#bt1").attr("uri")).submit();
+				return false;
+			}
+			else
+			{
+				$("#loginFrom").attr("action",$("#bt2").attr("uri")).submit();
+				return false;
+			}
+		}
+
+	</script>
+</head>
+<body class="text-center">
+<form id="loginFrom" class="form-signin"  method="post">
+	<img class="mb-4" th:src="@{/asserts/img/bootstrap-solid.svg}" src="asserts/img/bootstrap-solid.svg" alt="" width="72" height="72">
+	<h1 class="h3 mb-3 font-weight-normal" >请登录</h1>
+
+	<!--提示框-->
+	<div class="alert alert-danger" role="alert" th:if="${msg!=null}">
+		<div th:text="${msg}"></div>
+	</div>
+
+
+	<label class="sr-only" >用户名</label>
+	<input type="text"  name="username" class="form-control" placeholder="Username"  required="" autofocus="">
+	<label class="sr-only ">密码</label>
+	<input type="password" name="password" class="form-control" placeholder="Password"  required="">
+
+	<button class="btn btn-lg btn-success btn-block"  th:attr="uri=@{/stu/login}" onclick="send(0)"  id="bt0">学生登录</button>
+	<button class="btn btn-lg btn-primary btn-block"  th:attr="uri=@{/tea/login}" onclick="send(1)" id="bt1">教师登录</button>
+	<button class="btn btn-lg btn-danger btn-block"   th:attr="uri=@{/adm/login}"  onclick="send(2)" id="bt2">管理员登录</button>
+	<p class="mt-5 mb-3 text-muted">© 学生成绩信息管理系统</p>
+
+</form>
+</body>
+
+</html>

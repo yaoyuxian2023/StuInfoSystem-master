@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Created-By: IntelliJ IDEA
+Built-By: Augus
+Build-Jdk: Oracle OpenJDK version 1.8.0_162
+Implementation-Title: demo
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: com.lc
+Main-Class: ${start-class}
+
